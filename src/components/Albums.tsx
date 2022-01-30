@@ -1,23 +1,36 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { Albumns } from "../types/Albums";
+import { api } from "../api";
+import { Grid } from "./Grid";
+import { Container } from "./Container";
 
 const http = axios.create({
    baseURL: 'https://jsonplaceholder.typicode.com',
  });;
 
 export const Albums = () => {
+   const [album, setAlbum] = useState<Albumns[]>([]); 
    let { id } = useParams();
 
-   const getAlbum = async (id:any) => {
-      const response = await http.get(`/albums/${id}/photos`)
-      return response.data;
+   const fetchAlbum = async (id:any) => {
+      const json = await api.getAlbum(id);
+      setAlbum(json);
    }
 
-  console.log(getAlbum(id));
+   useEffect(() => {
+      fetchAlbum(id);
+   }, [])
 
    return (
-      <div>
-       
-      </div>
+      <Grid>
+         {album.map( (item, index) => (
+            <Container key={index}>
+               <p>{ item.title }</p>
+               <img src={item.thumbnailUrl} /> <br />
+            </Container>
+         ))}  
+      </Grid>
    );
 }

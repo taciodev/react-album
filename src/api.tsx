@@ -9,5 +9,9 @@ export const api = {
     const response = await http.get('/albums');
     return response.data;
   }, 
+  getAlbum: async (id:any) => {
+    const response = await http.get(`/albums/${id}/photos`)
+    return response.data;
+ }
 
 }
