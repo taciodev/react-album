@@ -23,7 +23,7 @@ export const Album = () => {
       setAlbum(photos);
    }
 
-   const loadAlbumInfo = async (id:string) => {
+   const loadAlbumInfo = async (id:any) => {
       const albumInfo = await api.getAlbum(id);
       setAlbumInfo(albumInfo);
    }
