@@ -5,19 +5,11 @@ function App() {
 
   return (
     <div>
-
-      <header>
-        <h1 style={{
-          textAlign: 'center'
-        }}>Galeria de Fotos</h1>
-      </header>
-
+      <h1 style={{
+        textAlign: 'center'
+      }}>Galeria de Fotos</h1>
       <hr />
-
-      <main>
         <MainRoutes />
-      </main>
-
     </div>
   );
 }
